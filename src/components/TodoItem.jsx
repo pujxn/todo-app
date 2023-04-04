@@ -2,8 +2,12 @@ import styles from "@/styles/TodoItem.module.css"
 import { useState, useRef } from "react";
 import { FaTrash } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
+import { useTodosContext } from "@/context/TodosContext";
 
-const TodoItem = ({ itemprop, handleChange, handleDelete, handleUpdate }) => {
+
+const TodoItem = ({ itemprop }) => {
+
+    const { handleChange, handleDelete, handleUpdate } = useTodosContext();
 
     const [editing, setEditing] = useState(false);
 
