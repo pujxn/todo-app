@@ -18,7 +18,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         logout();
-        navigate("login");
+        navigate("/login");
 
     }
     return (
@@ -26,7 +26,7 @@ const Navbar = () => {
             <nav className="navbar">
                 <ul>
                     {links.map((ele, idx) => (
-                        ((ele.path == "login" && !user) || ele.path != "login") &&
+                        ((ele.path == "login" && !user) || (ele.path == "profile" && user) || (ele.path != "login" && ele.path != "profile")) &&
                         (<li key={idx}>
                             <NavLink to={ele.path}>{ele.text}</NavLink>
                         </li>)

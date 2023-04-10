@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import NotMatch from "./NotMatch";
 
 const SinglePage = () => {
     // console.log(useParams());
@@ -20,7 +21,13 @@ const SinglePage = () => {
 
     const { slug } = useParams();
     const aboutContent = aboutData.find((item) => (item.slug == slug));
-    const { title, description } = aboutContent;
+    let title = "", description = "";
+    try {
+        title = aboutContent.title;
+        description = aboutContent.description;
+    } catch (err) {
+        return <NotMatch />
+    }
 
     return (
         <div className="main_content">
