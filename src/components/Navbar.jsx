@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "@/context/AuthContext";
+
 
 const links = [
     { path: "/", text: "Home" },
@@ -7,13 +9,29 @@ const links = [
     { path: "profile", text: "Profile" },
 ]
 
+
+
 const Navbar = () => {
+
+    const { user, logout } = useAuthContext();
+
     return (
-        <ul>
-            {links.map((ele, idx) => (
-                <li key={idx}><NavLink to={ele.path}>{ele.text}</NavLink></li>
-            ))}
-        </ul>
+        <>
+            <nav className="navbar">
+                <ul>
+                    {links.map((ele, idx) => (
+                        <li key={idx}><NavLink to={ele.path}>{ele.text}</NavLink></li>
+                    ))}
+                </ul>
+            </nav>
+            {user && (
+                <div className="logout">
+                    <p>{user}</p>
+                    <button onClick={logout}>Logout</button>
+                </div>
+            )}
+        </>
+
     );
 };
 export default Navbar;
