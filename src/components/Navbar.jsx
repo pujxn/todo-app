@@ -20,7 +20,10 @@ const Navbar = () => {
             <nav className="navbar">
                 <ul>
                     {links.map((ele, idx) => (
-                        <li key={idx}><NavLink to={ele.path}>{ele.text}</NavLink></li>
+                        ((ele.path == "login" && !user) || ele.path != "login") &&
+                        (<li key={idx}>
+                            <NavLink to={ele.path}>{ele.text}</NavLink>
+                        </li>)
                     ))}
                 </ul>
             </nav>
