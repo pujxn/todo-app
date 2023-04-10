@@ -67,3 +67,7 @@ body {
     margin-top: 5px;
     display: block;
 }
+
+.active {
+    color: #005bb3;
+}

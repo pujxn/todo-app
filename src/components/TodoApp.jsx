@@ -4,20 +4,24 @@ import Profile from "@/routes/Profile";
 import Login from "@/routes/Login";
 import { Routes, Route } from "react-router-dom";
 import NotMatch from "@/routes/NotMatch";
-import Layout from "./Layout";
+import Layout from "@/components/Layout";
+import SinglePage from "@/routes/SinglePage";
 
 const TodoApp = () => {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="about" element={<About />} />
+                <Route path="about" element={<About />} >
+                    <Route path=":slug" element={<SinglePage />} />
+                </Route>
                 <Route path="login" element={<Login />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="*" element={<NotMatch />} />
             </Route>
-        </Routes>
+        </Routes >
     )
 }
 
 export default TodoApp;
+
