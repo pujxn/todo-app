@@ -31,6 +31,11 @@ const Navbar = () => {
                             <NavLink to={ele.path}>{ele.text}</NavLink>
                         </li>)
                     ))}
+                    {!user && (
+                        <li className="log-in">
+                            <span>Log in to edit to-dos</span>
+                        </li>
+                    )}
                 </ul>
             </nav>
             {user && (

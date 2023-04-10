@@ -4,9 +4,10 @@ import { FaTrash } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
 // import { useTodosContext } from "@/context/TodosContext";
 import { useTodosStore } from "@/TodosStore";
+import { useAuthContext } from "@/context/AuthContext";
 
 const TodoItem = ({ itemprop }) => {
-
+    const { user } = useAuthContext();
     const handleChange = useTodosStore((state) => state.handleChange);
     const handleDelete = useTodosStore((state) => state.handleDelete);
     const handleUpdate = useTodosStore((state) => state.handleUpdate);
@@ -47,8 +48,8 @@ const TodoItem = ({ itemprop }) => {
                 <input type="checkbox"
                     checked={itemprop.completed}
                     onChange={() => handleChange(itemprop.id)} />
-                <button onClick={handleEdit}><AiFillEdit
-                    style={{ color: "#5e5e5e", fontSize: "16px" }} /></button>
+                {user && (<button onClick={handleEdit}><AiFillEdit
+                    style={{ color: "#5e5e5e", fontSize: "16px" }} /></button>)}
                 <button onClick={() => handleDelete(itemprop.id)}><FaTrash
                     style={{ color: "#5e5e5e", fontSize: "16px" }} /></button>
                 <span style={itemprop.completed ? completedStyle : null}>{itemprop.title}</span>

@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import styles from '@/styles/Login.module.css';
 import { useAuthContext } from '@/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
+    const location = useLocation();
+    const pathname = location.pathname;
+    const from = location.state ? location.state.pathname : "/";
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
     const { login } = useAuthContext();
@@ -12,7 +15,7 @@ const Login = () => {
         if (!username) return;
         login(username);
         setUsername('');
-        navigate('/', { replace: true });
+        navigate(from, { replace: true });
 
     };
     return (
