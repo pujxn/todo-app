@@ -5,11 +5,10 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(getUsername());
     const login = (user) => setUser(user);
-    const logout = () => setUser(null);
+    const logout = () => setUser("");
 
     function getUsername() {
-        const savedUsername = localStorage.getItem("username");
-        return savedUsername || "";
+        return localStorage.getItem("username");
     }
 
     useEffect(() => {
