@@ -2,10 +2,10 @@ import { useState } from 'react';
 import styles from '@/styles/Login.module.css';
 import { useAuthContext } from '@/context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import Header from '@/components/Header';
 const Login = () => {
     const location = useLocation();
-    const pathname = location.pathname;
+    // const pathname = location.pathname;
     const from = location.state ? location.state.pathname : "/";
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Login = () => {
     };
     return (
         <div>
-            <h1>Login</h1>
+            <Header><h1>login</h1></Header>
             <div className={styles.formWrapper}>
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <input

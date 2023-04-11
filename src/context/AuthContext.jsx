@@ -9,12 +9,10 @@ export const AuthProvider = ({ children }) => {
 
     function getUsername() {
         const savedUsername = localStorage.getItem("username");
-        // console.log("temp", temp);
         return savedUsername || "";
     }
 
     useEffect(() => {
-        // const temp = JSON.stringify(user);
         localStorage.setItem("username", user);
     }, [user])
 

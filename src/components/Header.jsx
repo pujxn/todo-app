@@ -1,6 +1,6 @@
 import styles from "@/styles/Header.module.css"
 
-const Header = () => {
+const Header = ({ children }) => {
     return (
         <header style={{
             padding: '20px 0',
@@ -8,8 +8,7 @@ const Header = () => {
             color: '#aeadad',
             textAlign: 'center',
         }} className={styles.header}>
-            <h1>todos.</h1>
-            <p>items will persist in the local browser storage</p>
+            {children}
         </header>
     )
 }
