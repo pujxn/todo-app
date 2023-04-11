@@ -15,7 +15,7 @@ const SinglePage = () => {
             slug: 'about-developer',
             title: 'About the developer',
             description:
-                'Pujan is a frontend developer looking to be the build performant and delightful experiences.',
+                'Pujan is a frontend developer looking to be the build performant, delightful and informed experiences for everyone',
         },
     ]
 
