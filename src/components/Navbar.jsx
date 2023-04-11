@@ -1,6 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "@/context/AuthContext";
 import { useState, useEffect, useRef } from "react";
+import { MdClose } from 'react-icons/md';
+import { FiMenu } from 'react-icons/fi';
+
 
 
 const links = [
@@ -43,7 +46,12 @@ const Navbar = () => {
     return (
         <>
             <button onClick={() => setNavMenuVisible((prevState) => !prevState)}>
-                {navMenuVisible ? "Close" : "Open"}
+                {navMenuVisible ? <MdClose style={{ width: '32px', height: '32px' }} /> : <FiMenu
+                    style={{
+                        width: '32px',
+                        height: '32px',
+                    }}
+                />}
             </button>
             <nav ref={ref} className="navbar">
                 <ul className={`menu-nav ${navMenuVisible ? ' show-menu' : ''}`}>
