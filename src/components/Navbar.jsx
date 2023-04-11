@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "@/context/AuthContext";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 
 const links = [
@@ -14,10 +14,27 @@ const links = [
 
 const Navbar = () => {
 
+
     const [navMenuVisible, setNavMenuVisible] = useState(false);
     const { user, logout } = useAuthContext();
-    // console.log("user", user, !user)
+    const ref = useRef(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+
+        const handleClickOutside = (event) => {
+            if (ref.current && navMenuVisible && !ref.current.contains(event.target)) {
+                setNavMenuVisible(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [navMenuVisible]);
+
 
     const handleLogout = () => {
         logout();
@@ -28,12 +45,12 @@ const Navbar = () => {
             <button onClick={() => setNavMenuVisible((prevState) => !prevState)}>
                 {navMenuVisible ? "Close" : "Open"}
             </button>
-            <nav className="navbar">
+            <nav ref={ref} className="navbar">
                 <ul className={`menu-nav ${navMenuVisible ? ' show-menu' : ''}`}>
                     {links.map((ele, idx) => (
                         ((ele.path == "login" && !user) || (ele.path == "profile" && user) || (ele.path != "login" && ele.path != "profile")) &&
                         (<li key={idx}>
-                            <NavLink to={ele.path}>{ele.text}</NavLink>
+                            <NavLink onClick={() => setNavMenuVisible(false)} to={ele.path}>{ele.text}</NavLink>
                         </li>)
                     ))}
                     {!user && (
