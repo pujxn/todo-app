@@ -1,7 +1,7 @@
 const NotMatch = () => {
     return (
         <div>
-            <p>Not found!</p>
+            <h1 style={{ "textAlign": "center" }}>Not found!</h1>
         </div>
     );
 };
