@@ -8,7 +8,7 @@ const Layout = () => {
                 <Navbar />
                 <Outlet />
             </AuthProvider>
-            <p style={{ "text-align": "center" }}>Made with 💖 by Pujan</p>
+            <p style={{ "textAlign": "center" }}>Made with 💖 by Pujan</p>
         </div >
     );
 };
